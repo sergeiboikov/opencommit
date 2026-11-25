@@ -2,12 +2,10 @@
   <div>
     <img src=".github/logo-grad.svg" alt="OpenCommit logo"/>
     <h1 align="center">OpenCommit</h1>
-    <h4 align="center">Author <a href="https://twitter.com/_sukharev_"><img src="https://img.shields.io/twitter/follow/_sukharev_?style=flat&label=_sukharev_&logo=twitter&color=0bf&logoColor=fff" align="center"></a>
+    <h4 align="center">Author <a href="https://github.com/sergeiboikov"><img src="https://img.shields.io/github/followers/sergeiboikov?style=flat&label=sergeiboikov&logo=github&color=0bf&logoColor=fff" alt="sergeiboikov" align="center"></a>
   </div>
 	<h2>Auto-generate meaningful commits in a second</h2>
 	<p>Killing lame commits with AI 🤯🔫</p>
-	<a href="https://www.npmjs.com/package/opencommit"><img src="https://img.shields.io/npm/v/opencommit" alt="Current version"></a>
-  <h4 align="center">🪩 Winner of <a href="https://twitter.com/_sukharev_/status/1683448136973582336">GitHub 2023 hackathon</a> 🪩</h4>
 </div>
 
 ---
@@ -16,7 +14,7 @@
     <img src=".github/opencommit-example.png" alt="OpenCommit example"/>
 </div>
 
-All the commits in this repo are authored by OpenCommit — look at [the commits](https://github.com/di-sukharev/opencommit/commit/eae7618d575ee8d2e9fff5de56da79d40c4bc5fc) to see how OpenCommit works. Emojis and long commit descriptions are configurable, basically everything is.
+Emojis and long commit descriptions are configurable, basically everything is.
 
 ## Setup OpenCommit as a CLI tool
 
@@ -25,7 +23,7 @@ You can use OpenCommit by simply running it via the CLI like this `oco`. 2 secon
 1. Install OpenCommit globally to use in any repository:
 
    ```sh
-   npm install -g opencommit
+   npm install -g github:sergeiboikov/opencommit
    ```
 
 2. Get your API key from [OpenAI](https://platform.openai.com/account/api-keys) or other supported LLM providers (we support them all). Make sure that you add your OpenAI payment details to your account, so the API works.
@@ -231,7 +229,7 @@ Other config options are behaving the same.
 
 You can set the `OCO_WHY` config to `true` to have OpenCommit output a short description of WHY the changes were done after the commit message. Default is `false`.
 
-To make this perform accurate we must store 'what files do' in some kind of an index or embedding and perform a lookup (kinda RAG) for the accurate git commit message. If you feel like building this comment on this ticket https://github.com/di-sukharev/opencommit/issues/398 and let's go from there together.
+To make this perform accurate we must store 'what files do' in some kind of an index or embedding and perform a lookup (kinda RAG) for the accurate git commit message. If you feel like building this, open an issue in this repository and let's go from there together.
 
 ```sh
 oco config set OCO_WHY=true
@@ -410,7 +408,7 @@ oco config set OCO_LANGUAGE=française
 ```
 
 The default language setting is **English**
-All available languages are currently listed in the [i18n](https://github.com/di-sukharev/opencommit/tree/master/src/i18n) folder
+All available languages are currently listed in the [i18n](src/i18n) folder
 
 ### Push to git (gonna be deprecated)
 
@@ -587,71 +585,12 @@ The hook records the absolute paths of Node.js and OpenCommit, so it works in cl
 
 Run `oco hook unset` in repositories that use the hook before you uninstall or downgrade OpenCommit. Older releases can only remove the symlinks they install. If `oco hook set` reports a different hook after an upgrade, check whether the existing `prepare-commit-msg` is an old OpenCommit symlink. Remove that symlink from the configured hooks directory manually once you have verified its target, then run `oco hook set` again.
 
-## Setup OpenCommit as a GitHub Action (BETA) 🔥
-
-OpenCommit is now available as a GitHub Action which automatically improves all new commits messages when you push to remote!
-
-This is great if you want to make sure all commits in all of your repository branches are meaningful and not lame like `fix1` or `done2`.
-
-Create a file `.github/workflows/opencommit.yml` with the contents below:
-
-```yml
-name: 'OpenCommit Action'
-
-on:
-  push:
-    # this list of branches is often enough,
-    # but you may still ignore other public branches
-    branches-ignore: [main master dev development release]
-
-jobs:
-  opencommit:
-    timeout-minutes: 10
-    name: OpenCommit
-    runs-on: ubuntu-latest
-    permissions: write-all
-    steps:
-      - name: Setup Node.js Environment
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: di-sukharev/opencommit@github-action-v1.0.4
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-        env:
-          # set openAI api key in repo actions secrets,
-          # for openAI keys go to: https://platform.openai.com/account/api-keys
-          # for repo secret go to: <your_repo_url>/settings/secrets/actions
-          OCO_API_KEY: ${{ secrets.OCO_API_KEY }}
-
-          # customization
-          OCO_TOKENS_MAX_INPUT: 4096
-          OCO_TOKENS_MAX_OUTPUT: 500
-          OCO_OPENAI_BASE_PATH: ''
-          OCO_DESCRIPTION: false
-          OCO_EMOJI: false
-          OCO_EMOJI_POSITION_BEFORE_DESCRIPTION: false
-          OCO_MODEL: gpt-4o
-          OCO_LANGUAGE: en
-          OCO_PROMPT_MODULE: conventional-commit
-```
-
-That is it. Now when you push to any branch in your repo — all NEW commits are being improved by your never-tired AI.
-
-Make sure you exclude public collaboration branches (`main`, `dev`, `etc`) in `branches-ignore`, so OpenCommit does not rebase commits there while improving the messages.
-
-Interactive rebase (`rebase -i`) changes commits' SHA, so the commit history in remote becomes different from your local branch history. This is okay if you work on the branch alone, but may be inconvenient for other collaborators.
-
 ## Payments
 
 You pay for your requests to OpenAI API on your own.
 
 OpenCommit stores your key locally.
 
-OpenCommit by default uses 3.5-turbo model, it should not exceed $0.10 per casual working day.
+OpenCommit by default uses the gpt-4o-mini model, it should not exceed $0.10 per casual working day.
 
 You may switch to gpt-4, it's better, but more expensive.

@@ -24,7 +24,7 @@ To get started, follow these steps:
 1. Clone the project repository locally.
 2. Install dependencies with `npm ci`.
 3. Run the project with `npm run dev`.
-4. See [issues](https://github.com/di-sukharev/opencommit/issues) or [TODO.md](TODO.md) to help the project.
+4. See [issues](https://github.com/sergeiboikov/opencommit/issues) or [TODO.md](TODO.md) to help the project.
 
 ## Commit message guidelines
 
@@ -36,7 +36,7 @@ If you encounter any issues while using the project, please report them on the G
 
 ## Contacts
 
-If you have any questions about contributing to the project, please contact by [creating an issue](https://github.com/di-sukharev/opencommit/issues) on the GitHub issue tracker.
+If you have any questions about contributing to the project, please contact by [creating an issue](https://github.com/sergeiboikov/opencommit/issues) on the GitHub issue tracker.
 
 ## License
 

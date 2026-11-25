@@ -14,7 +14,7 @@ export class OpenRouterEngine implements AiEngine {
       baseURL: 'https://openrouter.ai/api/v1/chat/completions',
       headers: {
         Authorization: `Bearer ${config.apiKey}`,
-        'HTTP-Referer': 'https://github.com/di-sukharev/opencommit',
+        'HTTP-Referer': 'https://github.com/sergeiboikov/opencommit',
         'X-Title': 'OpenCommit',
         'Content-Type': 'application/json'
       }

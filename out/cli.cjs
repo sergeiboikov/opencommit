@@ -71216,7 +71216,7 @@ var validateConfig = (key, condition, validationMessage) => {
   if (!condition) {
     ce(`${source_default.red("\u2716")} wrong value for ${key}: ${validationMessage}.`);
     ce(
-      "For more help refer to docs https://github.com/di-sukharev/opencommit"
+      "For more help refer to docs https://github.com/sergeiboikov/opencommit"
     );
     process.exit(1);
   }
@@ -71721,7 +71721,7 @@ var setConfig = (keyValues, globalConfigPath = defaultConfigPath) => {
 
 ${supportedKeys}.
 
-For more help refer to our docs: https://github.com/di-sukharev/opencommit`
+For more help refer to our docs: https://github.com/sergeiboikov/opencommit`
       );
     }
     let parsedConfigValue;
@@ -90695,7 +90695,7 @@ var AimlApiEngine = class {
       baseURL: config7.baseURL || "https://api.aimlapi.com/v1/chat/completions",
       headers: {
         Authorization: `Bearer ${config7.apiKey}`,
-        "HTTP-Referer": "https://github.com/di-sukharev/opencommit",
+        "HTTP-Referer": "https://github.com/sergeiboikov/opencommit",
         "X-Title": "opencommit",
         "Content-Type": "application/json",
         ...config7.customHeaders
@@ -90725,7 +90725,7 @@ var OpenRouterEngine = class {
       baseURL: "https://openrouter.ai/api/v1/chat/completions",
       headers: {
         Authorization: `Bearer ${config7.apiKey}`,
-        "HTTP-Referer": "https://github.com/di-sukharev/opencommit",
+        "HTTP-Referer": "https://github.com/sergeiboikov/opencommit",
         "X-Title": "OpenCommit",
         "Content-Type": "application/json"
       }

@@ -670,7 +670,7 @@ const validateConfig = (
     outro(`${chalk.red('✖')} wrong value for ${key}: ${validationMessage}.`);
 
     outro(
-      'For more help refer to docs https://github.com/di-sukharev/opencommit'
+      'For more help refer to docs https://github.com/sergeiboikov/opencommit'
     );
 
     process.exit(1);
@@ -1373,7 +1373,7 @@ export const setConfig = (
     if (!configValidators.hasOwnProperty(key)) {
       const supportedKeys = Object.keys(configValidators).join('\n');
       throw new Error(
-        `Unsupported config key: ${key}. Expected keys are:\n\n${supportedKeys}.\n\nFor more help refer to our docs: https://github.com/di-sukharev/opencommit`
+        `Unsupported config key: ${key}. Expected keys are:\n\n${supportedKeys}.\n\nFor more help refer to our docs: https://github.com/sergeiboikov/opencommit`
       );
     }
 
