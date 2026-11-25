@@ -16,7 +16,6 @@ import {
   promptForMissingApiKey
 } from './commands/setup';
 import { modelsCommand } from './commands/models';
-import { checkIsLatestVersion } from './utils/checkIsLatestVersion';
 import { runMigrations } from './migrations/_run.js';
 import { stripOcoFlags } from './utils/stripOcoFlags';
 
@@ -66,7 +65,6 @@ cli(
     }
 
     await runMigrations();
-    await checkIsLatestVersion();
 
     // Check for first run and trigger setup wizard
     if (isFirstRun()) {
