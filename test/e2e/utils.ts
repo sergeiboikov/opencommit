@@ -21,7 +21,6 @@ const fsRemove = promisify(rm);
 
 const CLI_PATH = path.resolve(process.cwd(), 'out/cli.cjs');
 const DEFAULT_TEST_ENV = {
-  OCO_TEST_SKIP_VERSION_CHECK: 'true',
   GIT_CONFIG_NOSYSTEM: '1',
   GIT_CONFIG_GLOBAL: path.resolve(
     tmpdir(),
